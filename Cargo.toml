@@ -1,0 +1,22 @@
+[package]
+edition = "2021"
+name = "whisper-napi"
+version = "0.0.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+mutter = "0.2.0"
+# Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
+napi = { version = "2", default-features = false, features = ["full"] }
+napi-derive = "2.12.2"
+symphonia = "0.5.4"
+tokio = { version = "1.45.1", features = ["fs", "rt", "macros"] }
+
+[build-dependencies]
+napi-build = "2.0.1"
+
+[profile.release]
+lto = true
+strip = "symbols"
